@@ -4,7 +4,7 @@ import {
 } from './../utils';
 import {
     nodeModulesPath
-} from './paths';
+} from './../paths';
 
 export default () => {
     fse.removeSync(nodeModulesPath);

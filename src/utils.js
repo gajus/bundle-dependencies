@@ -92,7 +92,7 @@ updatePublishPackageConfig = () => {
         packageConfig.scripts.postinstall += '; ';
     }
 
-    packageConfig.scripts.postinstall += 'rm -fr ./node_modules; mv ./bundled_modules ./node_modules';
+    packageConfig.scripts.postinstall += 'node ./node_modules/.bin/bundle-dependencies extract';
 
     packageConfig.dependencies = {
         'bundle-dependencies': pkg.version

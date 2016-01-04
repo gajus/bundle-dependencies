@@ -29,14 +29,8 @@
     "watch-test": "npm run pragmatist watch-test",
     "watch-build": "npm run pragmatist watch-build"
   },
-  "devDependencies": {
-    "pragmatist": "^2.3.17"
-  },
   "dependencies": {
     "fs-extra": "^0.26.3",
-    "glob": "^6.0.3",
-    "lodash": "^3.10.1",
-    "tar": "^2.2.1",
     "tar-fs": "^1.9.0",
     "yargs": "^3.31.0"
   }

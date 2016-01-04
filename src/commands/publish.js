@@ -1,7 +1,5 @@
-import {
-    prepublish,
-    postpublish
-} from './';
+import prepublish from './prepublish';
+import postpublish from './postpublish';
 import {
     publishModule
 } from './../utils';
@@ -12,12 +10,12 @@ export default () => {
     prepublish(() => {
         try {
             publishResult = publishModule();
-        } catch (error) {
-            console.log('error', error);
+        } finally {
+            postpublish();
+
+            /* eslint-disable no-console */
+            console.log(publishResult);
+            /* eslint-enable no-console */
         }
-
-        postpublish();
-
-        console.log(publishResult);
     });
 };

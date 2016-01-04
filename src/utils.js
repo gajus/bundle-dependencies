@@ -1,5 +1,4 @@
 import pkg from './../package.json';
-import _ from 'lodash';
 import path from 'path';
 import {
     execSync
@@ -88,7 +87,7 @@ updatePublishPackageConfig = () => {
     packageConfig.scripts.postinstall = packageConfig.scripts.postinstall || '';
 
     if (packageConfig.scripts.postinstall) {
-        packageConfig.scripts.postinstall = _.trimRight(packageConfig.scripts.postinstall, '; ');
+        packageConfig.scripts.postinstall = packageConfig.scripts.postinstall.replace(/[ ;]+$/g, '');
         packageConfig.scripts.postinstall += '; ';
     }
 

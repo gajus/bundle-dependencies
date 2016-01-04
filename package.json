@@ -22,7 +22,7 @@
   "scripts": {
     "pragmatist": "node ./node_modules/.bin/pragmatist --browser",
     "lint": "npm run pragmatist lint",
-    "test": "npm run pragmatist test",
+    "test": "",
     "build": "npm run pragmatist build",
     "watch": "npm run pragmatist watch",
     "watch-lint": "npm run pragmatist watch-lint",

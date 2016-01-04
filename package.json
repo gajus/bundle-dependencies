@@ -1,7 +1,7 @@
 {
   "name": "bundle-dependencies",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./dist/index.js",
   "bin": "./dist/index.js",
   "repository": {

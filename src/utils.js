@@ -5,9 +5,6 @@ import {
 import fs from 'fs';
 import fse from 'fs-extra';
 import {
-    bundledModulesPath,
-    nodeModulesBackupPath,
-    nodeModulesPath,
     packageBackupPath,
     packagePath
 } from './paths';
@@ -18,16 +15,14 @@ let backupPackageConfig,
     restorePackageConfig,
     updatePublishPackageConfig;
 
-fileExists = (path) => {
+fileExists = (filePath) => {
     try {
-        fs.statSync(path);
+        fs.statSync(filePath);
 
         return true;
-    } catch (e) {
-
+    } catch (error) {
+        return false;
     }
-
-    return false;
 };
 
 backupPackageConfig = () => {

@@ -62,6 +62,12 @@ Add to `package.json`:
 }
 ```
 
+To publish your package with bundled dependencies, run:
+
+```sh
+npm run publish-bundle
+```
+
 ### `.npmignore`
 
 Make sure that `.npmignore` (and `.gitignore`) has:

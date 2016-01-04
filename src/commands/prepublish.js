@@ -19,6 +19,8 @@ export default () => {
         npmConfigArgv = JSON.parse(process.env.npm_config_argv);
 
         if (npmConfigArgv.original[0] !== 'publish') {
+            console.log('`bundle-dependencies prepublish` will not execute. It appears that `prepublish` script has been run by `npm install`.');
+
             return;
         }
     }

@@ -48,9 +48,9 @@ compressNodeModules = (done) => {
 uncompressNodeModules = (done) => {
     let stream;
 
-    stream = fs.createReadStream('./node_modules.tar');
+    stream = fs.createReadStream(bundledModulesTarPath);
 
-    tar.extract('./node_modules').pipe(stream);
+    tar.extract(nodeModulesPath).pipe(stream);
 
     stream.on('finish', () => {
         done();

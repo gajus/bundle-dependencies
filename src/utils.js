@@ -50,7 +50,7 @@ uncompressNodeModules = (done) => {
 
     stream = fs.createReadStream(bundledModulesTarPath);
 
-    tar.extract(nodeModulesPath).pipe(stream);
+    stream.pipe(tar.extract(nodeModulesPath));
 
     stream.on('finish', () => {
         done();
@@ -92,7 +92,6 @@ updatePublishPackageConfig = () => {
         packageConfig.scripts.postinstall += '; ';
     }
 
-    // packageConfig.scripts.postinstall += 'echo "OK"';
     packageConfig.scripts.postinstall += 'bundle-dependencies extract';
 
     packageConfig.dependencies = {

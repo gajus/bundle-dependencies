@@ -1,6 +1,6 @@
 import fse from 'fs-extra';
 import {
-    bundledModulesPath
+    bundledModulesTarPath
 } from './../paths';
 import {
     restorePackageConfig
@@ -9,5 +9,5 @@ import {
 export default () => {
     restorePackageConfig();
 
-    fse.removeSync(bundledModulesPath);
+    fse.removeSync(bundledModulesTarPath);
 };

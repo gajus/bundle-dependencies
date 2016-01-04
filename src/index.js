@@ -1,5 +1,6 @@
 import yargs from 'yargs';
 import {
+    extract,
     publish,
     prepublish,
     postpublish
@@ -19,7 +20,9 @@ argv = yargs.argv;
 
 command = argv._[0];
 
-if (command === 'publish') {
+if (command === 'extract') {
+    extract();
+} else if (command === 'publish') {
     publish();
 } else if (command === 'prepublish') {
     prepublish();

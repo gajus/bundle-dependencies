@@ -1,11 +1,12 @@
 import fs from 'fs';
+import fse from 'fs-extra';
 import {
-    bundledModulesPath,
     nodeModulesBackupPath,
     nodeModulesPath
 } from './../paths';
 import {
     backupPackageConfig,
+    compressNodeModules,
     installProductionModules,
     updatePublishPackageConfig
 } from './../utils';
@@ -17,8 +18,10 @@ export default () => {
 
     installProductionModules();
 
-    fs.renameSync(nodeModulesPath, bundledModulesPath);
-    fs.renameSync(nodeModulesBackupPath, nodeModulesPath);
+    compressNodeModules(() => {
+        fse.removeSync(nodeModulesPath);
+        fs.renameSync(nodeModulesBackupPath, nodeModulesPath);
 
-    updatePublishPackageConfig();
+        updatePublishPackageConfig();
+    });
 };

@@ -6,6 +6,46 @@
 
 Bundles (deep) all module dependencies into a monolithic NPM package.
 
+`bundle-dependencies` is designed to be used with `devDependencies` and modules installed using `--global` flag.
+
+How much time can it save? Lets see.
+
+`2.3.38` release is done using `bundle-dependencies`.
+
+```sh
+time npm install pragmatist@2.3.38
+
+test@1.0.0 /Users/gajus/Desktop/test
+└── pragmatist@2.3.38  extraneous
+
+npm install pragmatist@2.3.38
+
+3.00s user
+0.92s system
+62% cpu
+6.278 total
+```
+
+`2.3.38` release is done using `bundle-dependencies`.
+
+`2.3.37` release is done without using `bundle-dependencies`.
+
+```sh
+time npm install pragmatist@2.3.37
+
+test@1.0.0 /Users/gajus/Desktop/test
+└── pragmatist@2.3.37  extraneous
+
+npm install pragmatist@2.3.37
+
+34.72s user
+6.10s system
+24% cpu
+2:46.92 total
+```
+
+166
+
 ## Usage
 
 ```sh

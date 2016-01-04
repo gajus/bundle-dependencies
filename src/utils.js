@@ -1,3 +1,4 @@
+import pkg from './../package.json';
 import _ from 'lodash';
 import path from 'path';
 import {
@@ -6,15 +7,20 @@ import {
 import fs from 'fs';
 import fse from 'fs-extra';
 import {
+    bundledModulesTarPath,
     packageBackupPath,
-    packagePath
+    packagePath,
+    nodeModulesPath
 } from './paths';
+import tar from 'tar-fs';
 
 let backupPackageConfig,
+    compressNodeModules,
     fileExists,
     installProductionModules,
     publishModule,
     restorePackageConfig,
+    uncompressNodeModules,
     updatePublishPackageConfig;
 
 fileExists = (filePath) => {
@@ -25,6 +31,30 @@ fileExists = (filePath) => {
     } catch (error) {
         return false;
     }
+};
+
+compressNodeModules = (done) => {
+    let stream;
+
+    stream = fs.createWriteStream(bundledModulesTarPath);
+
+    tar.pack(nodeModulesPath).pipe(stream);
+
+    stream.on('finish', () => {
+        done();
+    });
+};
+
+uncompressNodeModules = (done) => {
+    let stream;
+
+    stream = fs.createReadStream('./node_modules.tar');
+
+    tar.extract('./node_modules').pipe(stream);
+
+    stream.on('finish', () => {
+        done();
+    });
 };
 
 backupPackageConfig = () => {
@@ -64,7 +94,9 @@ updatePublishPackageConfig = () => {
 
     packageConfig.scripts.postinstall += 'rm -fr ./node_modules; mv ./bundled_modules ./node_modules';
 
-    packageConfig.dependencies = {};
+    packageConfig.dependencies = {
+        'bundle-dependencies': pkg.version
+    };
     packageConfig.devDependencies = {};
 
     fse.writeJsonSync(packagePath, packageConfig);
@@ -86,8 +118,10 @@ installProductionModules = () => {
 
 export {
     backupPackageConfig,
+    compressNodeModules,
     installProductionModules,
     publishModule,
     restorePackageConfig,
+    uncompressNodeModules,
     updatePublishPackageConfig
 };

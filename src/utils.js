@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import path from 'path';
 import {
     execSync
@@ -12,6 +13,7 @@ import {
 let backupPackageConfig,
     fileExists,
     installProductionModules,
+    publishModule,
     restorePackageConfig,
     updatePublishPackageConfig;
 
@@ -54,12 +56,24 @@ updatePublishPackageConfig = () => {
 
     packageConfig.scripts = packageConfig.scripts || {};
     packageConfig.scripts.postinstall = packageConfig.scripts.postinstall || '';
-    packageConfig.scripts.postinstall += '; rm -fr ./node_modules; mv ./bundled_modules ./node_modules';
+
+    if (packageConfig.scripts.postinstall) {
+        packageConfig.scripts.postinstall = _.trimRight(packageConfig.scripts.postinstall, '; ');
+        packageConfig.scripts.postinstall += '; ';
+    }
+
+    packageConfig.scripts.postinstall += 'rm -fr ./node_modules; mv ./bundled_modules ./node_modules';
 
     packageConfig.dependencies = {};
     packageConfig.devDependencies = {};
 
     fse.writeJsonSync(packagePath, packageConfig);
+};
+
+publishModule = () => {
+    execSync('npm publish', {
+        cwd: process.cwd()
+    });
 };
 
 installProductionModules = () => {
@@ -71,6 +85,7 @@ installProductionModules = () => {
 export {
     backupPackageConfig,
     installProductionModules,
+    publishModule,
     restorePackageConfig,
     updatePublishPackageConfig
 };

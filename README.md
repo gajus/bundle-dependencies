@@ -17,17 +17,22 @@ Add to `package.json`:
 ```json
 {
     "scripts": {
-        "prepublish": "node ./node_modules/.bin/bundle-dependencies prepublish",
-        "postpublish": "node ./node_modules/.bin/bundle-dependencies postpublish"
+        "publish-bundle": "node ./node_modules/.bin/bundle-dependencies publish"
     }
 }
 ```
 
 ## Implementation
 
-Running `npm publish` `bundle-dependencies` script will:
+`bundle-dependencies publish` execution flow is:
 
-### `prepublish`
+1. Runs `bundle-dependencies` [internal `prepublish` logic](#internal-prepublish-logic).
+1. Executes `npm publish`.
+1. Runs `bundle-dependencies` [internal `postpublish` logic](#internal-postpublish-logic).
+
+Do not add `bundle-dependencies` script to `prepublish`, `publish` or `postpublish` `package.json` scripts. NPM copies the contents of `package.json` before `prepublish` script is executed. This makes the [internal `prepublish` logic](#internal-prepublish-logic) impossible. `prepublish` and `postpublish` commands are exposed for testing only.
+
+### Internal `prepublish` logic.
 
 1. Backup the existing `./node_modules`.
 1. Backup the existing `./package.json`.
@@ -36,14 +41,14 @@ Running `npm publish` `bundle-dependencies` script will:
 1. Remove all dependencies from `./package.json`.
 1. Add `postinstall` script to `./package.json`.
 
-### `postpublish`
+### Internal `postpublish` logic.
 
 1. Delete `./bundled_modules`.
 1. Delete `./package.json`.
 1. Restore the original `./node_modules`.
 1. Restore the original `./package.json`.
 
-## `postinstall` script
+### `postinstall` script
 
 The `postinstall` script is:
 

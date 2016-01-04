@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "fs-extra": "^0.26.3",
+    "lodash": "^3.10.1",
     "yargs": "^3.31.0"
   }
 }

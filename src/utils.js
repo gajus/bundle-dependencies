@@ -71,13 +71,13 @@ updatePublishPackageConfig = () => {
 };
 
 publishModule = () => {
-    execSync('npm publish', {
+    return execSync('npm publish', {
         cwd: process.cwd()
     });
 };
 
 installProductionModules = () => {
-    execSync('npm install --production', {
+    return execSync('npm install --production', {
         cwd: process.cwd()
     });
 };

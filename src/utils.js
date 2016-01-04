@@ -92,8 +92,7 @@ updatePublishPackageConfig = () => {
         packageConfig.scripts.postinstall += '; ';
     }
 
-    packageConfig.scripts.postinstall += 'echo "OK"';
-    // packageConfig.scripts.postinstall += 'node ./node_modules/.bin/bundle-dependencies extract';
+    packageConfig.scripts.postinstall += 'bundle-dependencies extract';
 
     packageConfig.dependencies = {
         'bundle-dependencies': pkg.version

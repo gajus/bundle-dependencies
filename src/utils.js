@@ -92,6 +92,7 @@ updatePublishPackageConfig = () => {
         packageConfig.scripts.postinstall += '; ';
     }
 
+    // packageConfig.scripts.postinstall += 'echo "OK"';
     packageConfig.scripts.postinstall += 'bundle-dependencies extract';
 
     packageConfig.dependencies = {

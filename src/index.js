@@ -12,6 +12,7 @@ let argv,
 
 yargs
     .usage('$0 command')
+    .command('extract')
     .command('publish')
     .command('prepublish')
     .command('postpublish')

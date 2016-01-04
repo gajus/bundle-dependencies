@@ -57,7 +57,7 @@ Add to `package.json`:
 ```json
 {
     "scripts": {
-        "publish-bundle": "node ./node_modules/.bin/bundle-dependencies publish"
+        "publish-bundle": "bundle-dependencies publish"
     }
 }
 ```
@@ -70,12 +70,14 @@ npm run publish-bundle
 
 ### `.npmignore`
 
-Make sure that `.npmignore` (and `.gitignore`) has:
+Add to `.npmignore` (and `.gitignore`):
 
 ```
-.package.json.backup
-.node_modules.backup
+.backup.package.json
+.backup.node_modules
 ```
+
+These are the backup files of your original `./package.json` and `./node_modules`. Do not commit them to the package registry.
 
 ## Implementation
 

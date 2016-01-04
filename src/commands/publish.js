@@ -7,13 +7,17 @@ import {
 } from './../utils';
 
 export default () => {
+    let publishResult;
+
     prepublish();
 
     try {
-        publishModule();
+        publishResult = publishModule();
     } catch (error) {
         console.log('error', error);
     }
 
     postpublish();
+
+    console.log(publishResult);
 };

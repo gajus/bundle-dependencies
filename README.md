@@ -10,41 +10,51 @@ Bundles (deep) all module dependencies into a monolithic NPM package.
 
 How much time can it save? Lets see.
 
-`2.3.38` release is done using `bundle-dependencies`.
+`2.3.63` release is done without `bundle-dependencies`.
 
-```sh
-time npm install pragmatist@2.3.38
-
-test@1.0.0 /Users/gajus/Desktop/test
-└── pragmatist@2.3.38  extraneous
-
-npm install pragmatist@2.3.38
-
-3.00s user
-0.92s system
-62% cpu
-6.278 total
 ```
+time npm install pragmatist@2.3.63
+npm WARN deprecated lodash@1.0.2: lodash@<2.0.0 is no longer maintained. Upgrade to lodash@^3.0.0
 
-`2.3.38` release is done using `bundle-dependencies`.
+> fsevents@1.0.6 install /Users/gajus/Desktop/test/node_modules/fsevents
+> node-pre-gyp install --fallback-to-build
 
-`2.3.37` release is done without using `bundle-dependencies`.
-
-```sh
-time npm install pragmatist@2.3.37
-
+[fsevents] Success: "/Users/gajus/Desktop/test/node_modules/fsevents/lib/binding/Release/node-v47-darwin-x64/fse.node" is installed via remote
 test@1.0.0 /Users/gajus/Desktop/test
-└── pragmatist@2.3.37  extraneous
+└── pragmatist@2.3.63  extraneous
 
-npm install pragmatist@2.3.37
+npm WARN EPACKAGEJSON test@1.0.0 No description
+npm WARN EPACKAGEJSON test@1.0.0 No repository field.
+npm install pragmatist@2.3.63
 
-34.72s user
-6.10s system
+34.59s user
+6.15s system
 24% cpu
-2:46.92 total
+2:44.35 total
 ```
 
-166
+`2.3.64` release is done with `bundle-dependencies`.
+
+```
+time npm install pragmatist@2.3.64
+
+> pragmatist@2.3.64 postinstall /Users/gajus/Desktop/test/node_modules/pragmatist
+> bundle-dependencies extract
+
+test@1.0.0 /Users/gajus/Desktop/test
+└── pragmatist@2.3.64  extraneous
+
+npm WARN EPACKAGEJSON test@1.0.0 No description
+npm WARN EPACKAGEJSON test@1.0.0 No repository field.
+npm install pragmatist@2.3.64
+
+5.41s user
+2.34s system
+36% cpu
+21.175 total
+```
+
+The `bundle-dependencies` install process is 8 times faster (2 minutes 44 seconds compared to 21 second).
 
 ## Usage
 

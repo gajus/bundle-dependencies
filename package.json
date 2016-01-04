@@ -9,8 +9,9 @@
     "url": "https://github.com/gajus/bundle-dependencies"
   },
   "keywords": [
-    "babel",
-    "plugin"
+    "npm",
+    "bundle",
+    "dependencies"
   ],
   "author": {
     "name": "Gajus Kuizinas",

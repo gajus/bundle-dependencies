@@ -22,6 +22,15 @@ Add to `package.json`:
 }
 ```
 
+### `.npmignore`
+
+Make sure that `.npmignore` (and `.gitignore`) has:
+
+```
+.package.json.backup
+.node_modules.backup
+```
+
 ## Implementation
 
 `bundle-dependencies publish` execution flow is:

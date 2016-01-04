@@ -86,13 +86,14 @@ Do not add `bundle-dependencies` script to `prepublish`, `publish` or `postpubli
 1. Backup the existing `./node_modules`.
 1. Backup the existing `./package.json`.
 1. Install package dependencies (`npm install --production`).
-1. Rename `./node_modules` to `./bundled_modules`.
+1. Compress `./node_modules` to `./bundled_modules.tar`.
 1. Remove all dependencies from `./package.json`.
+1. Add `bundled-dependencies` dependency to `./package.json`.
 1. Add `postinstall` script to `./package.json`.
 
 ### Internal `postpublish` logic.
 
-1. Delete `./bundled_modules`.
+1. Delete `./bundled_modules.tar`.
 1. Delete `./package.json`.
 1. Restore the original `./node_modules`.
 1. Restore the original `./package.json`.
@@ -102,8 +103,11 @@ Do not add `bundle-dependencies` script to `prepublish`, `publish` or `postpubli
 The `postinstall` script is:
 
 ```sh
-; rm -fr ./node_modules; mv ./bundled_modules ./node_modules
+bundled-dependencies extract
 ```
+
+1. Deletes `./node_modules`.
+1. Extracts `./bundled_modules.tar` to `./node_modules`.
 
 ## package.json `bundledDependencies`
 

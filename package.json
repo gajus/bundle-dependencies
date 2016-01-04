@@ -1,0 +1,38 @@
+{
+  "name": "bundle-dependencies",
+  "description": "",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "bin": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gajus/bundle-dependencies"
+  },
+  "keywords": [
+    "babel",
+    "plugin"
+  ],
+  "author": {
+    "name": "Gajus Kuizinas",
+    "email": "gajus@gajus.com",
+    "url": "http://gajus.com"
+  },
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "pragmatist": "node ./node_modules/.bin/pragmatist --browser",
+    "lint": "npm run pragmatist lint",
+    "test": "npm run pragmatist test",
+    "build": "npm run pragmatist build",
+    "watch": "npm run pragmatist watch",
+    "watch-lint": "npm run pragmatist watch-lint",
+    "watch-test": "npm run pragmatist watch-test",
+    "watch-build": "npm run pragmatist watch-build"
+  },
+  "devDependencies": {
+    "pragmatist": "^2.3.17"
+  },
+  "dependencies": {
+    "fs-extra": "^0.26.3",
+    "yargs": "^3.31.0"
+  }
+}

@@ -8,8 +8,8 @@ import fs from 'fs';
 import fse from 'fs-extra';
 import {
     bundledModulesTarPath,
-    packageBackupPath,
-    packagePath,
+    packageConfigBackupPath,
+    packageConfigPath,
     nodeModulesPath
 } from './paths';
 import tar from 'tar-fs';
@@ -58,31 +58,31 @@ uncompressNodeModules = (done) => {
 };
 
 backupPackageConfig = () => {
-    if (!fileExists(packagePath)) {
-        throw new Error('./' + path.basename(packagePath) + ' does not exist.');
+    if (!fileExists(packageConfigPath)) {
+        throw new Error('./' + path.basename(packageConfigPath) + ' does not exist.');
     }
 
-    if (fileExists(packageBackupPath)) {
-        throw new Error('./' + path.basename(packageBackupPath) + ' already exists.');
+    if (fileExists(packageConfigBackupPath)) {
+        throw new Error('./' + path.basename(packageConfigBackupPath) + ' already exists.');
     }
 
-    fse.copySync(packagePath, packageBackupPath);
+    fse.copySync(packageConfigPath, packageConfigBackupPath);
 };
 
 restorePackageConfig = () => {
-    if (!fileExists(packageBackupPath)) {
-        throw new Error('./' + path.basename(packageBackupPath) + ' does not exist.');
+    if (!fileExists(packageConfigBackupPath)) {
+        throw new Error('./' + path.basename(packageConfigBackupPath) + ' does not exist.');
     }
 
-    fse.copySync(packageBackupPath, packagePath);
+    fse.copySync(packageConfigBackupPath, packageConfigPath);
 
-    fse.removeSync(packageBackupPath);
+    fse.removeSync(packageConfigBackupPath);
 };
 
 updatePublishPackageConfig = () => {
     let packageConfig;
 
-    packageConfig = fse.readJsonSync(packagePath);
+    packageConfig = fse.readJsonSync(packageConfigBackupPath);
 
     packageConfig.scripts = packageConfig.scripts || {};
     packageConfig.scripts.postinstall = packageConfig.scripts.postinstall || '';
@@ -92,14 +92,15 @@ updatePublishPackageConfig = () => {
         packageConfig.scripts.postinstall += '; ';
     }
 
-    packageConfig.scripts.postinstall += 'node ./node_modules/.bin/bundle-dependencies extract';
+    packageConfig.scripts.postinstall += 'echo "OK"';
+    // packageConfig.scripts.postinstall += 'node ./node_modules/.bin/bundle-dependencies extract';
 
     packageConfig.dependencies = {
         'bundle-dependencies': pkg.version
     };
     packageConfig.devDependencies = {};
 
-    fse.writeJsonSync(packagePath, packageConfig);
+    fse.writeJsonSync(packageConfigPath, packageConfig);
 };
 
 publishModule = () => {

@@ -9,15 +9,15 @@ import {
 export default () => {
     let publishResult;
 
-    prepublish();
+    prepublish(() => {
+        try {
+            publishResult = publishModule();
+        } catch (error) {
+            console.log('error', error);
+        }
 
-    try {
-        publishResult = publishModule();
-    } catch (error) {
-        console.log('error', error);
-    }
+        postpublish();
 
-    postpublish();
-
-    console.log(publishResult);
+        console.log(publishResult);
+    });
 };

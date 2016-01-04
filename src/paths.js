@@ -3,19 +3,19 @@ import path from 'path';
 let bundledModulesTarPath,
     nodeModulesBackupPath,
     nodeModulesPath,
-    packageBackupPath,
-    packagePath;
+    packageConfigBackupPath,
+    packageConfigPath;
 
-packagePath = path.resolve(process.cwd(), './package.json');
-packageBackupPath = path.resolve(process.cwd(), './.package.json.backup');
+packageConfigPath = path.resolve(process.cwd(), './package.json');
+packageConfigBackupPath = path.resolve(process.cwd(), './.backup.package.json');
 nodeModulesPath = path.resolve(process.cwd(), './node_modules');
-nodeModulesBackupPath = path.resolve(process.cwd(), './.node_modules.backup');
+nodeModulesBackupPath = path.resolve(process.cwd(), './.backup.node_modules');
 bundledModulesTarPath = path.resolve(process.cwd(), './bundled_modules.tar');
 
 export {
     bundledModulesTarPath,
     nodeModulesBackupPath,
     nodeModulesPath,
-    packageBackupPath,
-    packagePath
+    packageConfigBackupPath,
+    packageConfigPath
 };

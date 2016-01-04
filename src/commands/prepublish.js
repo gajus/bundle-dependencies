@@ -11,7 +11,7 @@ import {
     updatePublishPackageConfig
 } from './../utils';
 
-export default () => {
+export default (done) => {
     backupPackageConfig();
 
     fs.renameSync(nodeModulesPath, nodeModulesBackupPath);
@@ -20,8 +20,11 @@ export default () => {
 
     compressNodeModules(() => {
         fse.removeSync(nodeModulesPath);
+
         fs.renameSync(nodeModulesBackupPath, nodeModulesPath);
 
         updatePublishPackageConfig();
+
+        done();
     });
 };

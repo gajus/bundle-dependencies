@@ -4,6 +4,19 @@
 [![Travis build status](http://img.shields.io/travis/gajus/bundle-dependencies/master.svg?style=flat-square)](https://travis-ci.org/gajus/bundle-dependencies)
 [![js-canonical-style](https://img.shields.io/badge/code%20style-canonical-blue.svg?style=flat-square)](https://github.com/gajus/canonical)
 
+## Deprecated
+
+The original benchmarks of [`bundledDependencies`](https://docs.npmjs.com/files/package.json#bundleddependencies) have been flawed.
+
+To achieve the same result of `bundle-dependencies` using `bundledDependencies` `package.json` property:
+
+1. Add all `dependencies` to `bundledDependencies` `package.json` property.
+1. Before publishing, start in clean directory (i.e., `rm -fr ./node_modules`).
+1. Install dependencies using `--production` flag (i.e., `npm install --production`).
+1. Publish package.
+
+## `bundle-dependencies`
+
 Bundles (deep) all module dependencies into a monolithic NPM package.
 
 `bundle-dependencies` is designed to be used with `devDependencies` and modules installed using `--global` flag.
@@ -12,7 +25,7 @@ How much time can it save? Lets see.
 
 `2.3.63` release is done without `bundle-dependencies`.
 
-```
+```sh
 time npm install pragmatist@2.3.63
 
 34.59s user
@@ -23,7 +36,7 @@ time npm install pragmatist@2.3.63
 
 `2.3.64` release is done with `bundle-dependencies`.
 
-```
+```sh
 time npm install pragmatist@2.3.64
 
 5.41s user
@@ -108,11 +121,3 @@ bundled-dependencies extract
 
 1. Deletes `./node_modules`.
 1. Extracts `./bundled_modules.tar` to `./node_modules`.
-
-## package.json `bundledDependencies`
-
-NPM has a configuration [`bundledDependencies`](https://docs.npmjs.com/files/package.json#bundleddependencies):
-
-> Array of package names that will be bundled when publishing the package.
-
-However, this configuration only bundles the direct dependencies but not dependencies of the dependencies.

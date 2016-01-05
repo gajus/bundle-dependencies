@@ -15,6 +15,28 @@ To achieve the same result of `bundle-dependencies` using `bundledDependencies` 
 1. Install dependencies using `--production` flag (i.e., `npm install --production`).
 1. Publish package.
 
+You can use [`bundled-dependencies`](https://www.npmjs.com/package/bundled-dependencies) package to automate the first step.
+
+```sh
+npm install bundled-dependencies --save-dev
+```
+
+Add to `package.json`:
+
+```json
+{
+    "scripts": {
+        "bundle-dependencies": "bundled-dependencies"
+    }
+}
+```
+
+Run:
+
+```sh
+npm run bundle-dependencies
+```
+
 ## `bundle-dependencies`
 
 Bundles (deep) all module dependencies into a monolithic NPM package.

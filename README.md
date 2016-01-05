@@ -69,7 +69,7 @@ These are the backup files of your original `./package.json` and `./node_modules
 
 ## Considerations
 
-* This tool will not work if package has dependencies with native bindings (https://github.com/gajus/bundle-dependencies/issues/1 and https://github.com/gajus/bundle-dependencies/issues/2).
+* This tool will not work if package has dependencies with native bindings (Issues [#1](https://github.com/gajus/bundle-dependencies/issues/1) and [#2](https://github.com/gajus/bundle-dependencies/issues/2)).
 
 ## Implementation
 

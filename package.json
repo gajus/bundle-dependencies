@@ -1,7 +1,7 @@
 {
   "name": "bundle-dependencies",
   "description": "Bundles (deep) all module dependencies into a monolithic NPM package.",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "main": "./dist/index.js",
   "bin": "./dist/index.js",
   "repository": {

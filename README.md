@@ -14,18 +14,6 @@ How much time can it save? Lets see.
 
 ```
 time npm install pragmatist@2.3.63
-npm WARN deprecated lodash@1.0.2: lodash@<2.0.0 is no longer maintained. Upgrade to lodash@^3.0.0
-
-> fsevents@1.0.6 install /Users/gajus/Desktop/test/node_modules/fsevents
-> node-pre-gyp install --fallback-to-build
-
-[fsevents] Success: "/Users/gajus/Desktop/test/node_modules/fsevents/lib/binding/Release/node-v47-darwin-x64/fse.node" is installed via remote
-test@1.0.0 /Users/gajus/Desktop/test
-└── pragmatist@2.3.63  extraneous
-
-npm WARN EPACKAGEJSON test@1.0.0 No description
-npm WARN EPACKAGEJSON test@1.0.0 No repository field.
-npm install pragmatist@2.3.63
 
 34.59s user
 6.15s system
@@ -37,16 +25,6 @@ npm install pragmatist@2.3.63
 
 ```
 time npm install pragmatist@2.3.64
-
-> pragmatist@2.3.64 postinstall /Users/gajus/Desktop/test/node_modules/pragmatist
-> bundle-dependencies extract
-
-test@1.0.0 /Users/gajus/Desktop/test
-└── pragmatist@2.3.64  extraneous
-
-npm WARN EPACKAGEJSON test@1.0.0 No description
-npm WARN EPACKAGEJSON test@1.0.0 No repository field.
-npm install pragmatist@2.3.64
 
 5.41s user
 2.34s system
@@ -88,6 +66,10 @@ Add to `.npmignore` (and `.gitignore`):
 ```
 
 These are the backup files of your original `./package.json` and `./node_modules`. Do not commit them to the package registry.
+
+## Considerations
+
+* This tool will not work if package has dependencies with native bindings (https://github.com/gajus/bundle-dependencies/issues/1 and https://github.com/gajus/bundle-dependencies/issues/2).
 
 ## Implementation
 

@@ -34,5 +34,8 @@
   },
   "devDependencies": {
     "pragmatist": "^3.0.9"
-  }
+  },
+  "bundledDependencies": [
+    "yargs"
+  ]
 }

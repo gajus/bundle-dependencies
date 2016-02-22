@@ -3,7 +3,7 @@
   "description": "Generates bundledDependencies package.json value using values of the dependencies property.",
   "version": "1.0.0",
   "main": "./dist/index.js",
-  "bin": "./dist/index.js",
+  "bin": "./dist/bin/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/gajus/bundle-dependencies"
@@ -22,11 +22,11 @@
   "scripts": {
     "pragmatist": "pragmatist --es5",
     "lint": "npm run pragmatist lint",
-    "test": "npm run pragmatist test",
+    "test": "",
     "build": "npm run pragmatist build",
     "watch": "npm run pragmatist watch",
     "watch-lint": "npm run pragmatist watch-lint",
-    "watch-test": "npm run pragmatist watch-test",
+    "watch-test": "",
     "watch-build": "npm run pragmatist watch-build"
   },
   "dependencies": {
@@ -34,8 +34,5 @@
   },
   "devDependencies": {
     "pragmatist": "^3.0.9"
-  },
-  "bundledDependencies": [
-    "yargs"
-  ]
+  }
 }

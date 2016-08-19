@@ -59,7 +59,7 @@ npm run bundle-dependencies update
 
 ## Publishing
 
-When publishing a package using `bundledDependencies` property, make sure that your `nodu_modules/` directory includes only bundled dependencies, i.e. the module must be install using `npm install --production [list of bundled dependencies]`. Use this script to do it:
+When publishing a package using `bundledDependencies` property, make sure that your `node_modules/` directory includes only bundled dependencies, i.e. the module must be install using `npm install --production [list of bundled dependencies]`. Use this script to do it:
 
 ```json
 {
